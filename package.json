@@ -1,8 +1,4 @@
 {
-  "name": "meowjs",
-  "version": "1.0.0",
-  "description": "",
-  "main": "a.js",
   "bin": {
     "meow": "./bin/index.js"
   },
@@ -20,6 +16,8 @@
   },
   "homepage": "https://github.com/bigMeowCoding/meowjs#readme",
   "devDependencies": {
+    "lerna": "^5.1.8",
+    "nx": "^14.4.3",
     "prettier": "^2.7.1",
     "webpack": "^5.73.0"
   }
