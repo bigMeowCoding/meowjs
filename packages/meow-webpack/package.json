@@ -25,5 +25,8 @@
   },
   "bugs": {
     "url": "https://github.com/bigMeowCoding/meowjs/issues"
+  },
+  "dependencies": {
+    "webpack": "3.5.6"
   }
 }
