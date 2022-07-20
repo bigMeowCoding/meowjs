@@ -1,6 +1,6 @@
 {
   "name": "meowjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "> TODO: description",
   "author": "zhouyijun <zhou495248579@hotmail.com>",
   "homepage": "https://github.com/bigMeowCoding/meowjs/tree/main/packages/meowjs#readme",
@@ -30,6 +30,6 @@
     "url": "https://github.com/bigMeowCoding/meowjs/issues"
   },
   "devDependencies": {
-    "meow-webpack": "^0.0.1"
+    "meow-webpack": "^0.0.2"
   }
 }
