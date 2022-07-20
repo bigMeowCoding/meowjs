@@ -1,3 +1,3 @@
-module.exports= function dev(){
-    console.log('meow-----=')
+export function dev() {
+  console.log("meow meow meow");
 }

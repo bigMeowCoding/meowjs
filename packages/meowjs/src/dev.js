@@ -1,4 +1,1 @@
-const dev = require("meow-webpack/src/dev");
-module.exports = function () {
-  dev();
-};
+export {dev}from "meow-webpack/lib/dev.js";
