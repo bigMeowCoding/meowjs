@@ -3,39 +3,40 @@ import {
   createCompiler,
   prepareUrls,
 } from "react-dev-utils/WebpackDevServerUtils";
-import WebpackDevServer from 'webpack-dev-server';
-import chalk from 'chalk';
+import WebpackDevServer from "webpack-dev-server";
+import chalk from "chalk";
 
 const isInteractive = process.stdout.isTTY;
 const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 8000;
 const HOST = process.env.HOST || "0.0.0.0";
 const PROTOCOL = process.env.HTTPS ? "https" : "http";
 const noop = () => {};
-const port = DEFAULT_PORT
+const port = DEFAULT_PORT;
+import { join, dirname } from "path";
 
 process.env.NODE_ENV = "development";
 export function dev() {
-  console.log("meow meow meow");
   const urls = prepareUrls(PROTOCOL, HOST, port);
+  // console.log("entry====", join(process.cwd(), "./src/index.js"));
   const compiler = createCompiler(
     webpack,
     {
-      entry: "./src/index.js",
+      entry: join(process.cwd(), "./src/index.js"),
+      output: { path: join(process.cwd(), "./build"), filename: "bundle.js" },
     },
     "Your App",
     urls
   );
-  console.log(compiler);
+
   const serverConfig = {
     disableHostCheck: true,
     compress: true,
-    clientLogLevel: 'none',
+    clientLogLevel: "none",
     hot: true,
     quiet: true,
     headers: {
-      'access-control-allow-origin': '*',
+      "access-control-allow-origin": "*",
     },
-    publicPath: 'build',
     watchOptions: {
       ignored: /node_modules/,
     },
@@ -44,15 +45,15 @@ export function dev() {
     https: !!process.env.HTTPS,
     // contentBase: contentBase || process.env.CONTENT_BASE,
     before(app) {
-      console.log('before')
+      console.log("before");
     },
     after(app) {
-      console.log('after')
+      console.log("after");
     },
   };
 
   const devServer = new WebpackDevServer(compiler, serverConfig);
-  devServer.listen(port, HOST, err => {
+  devServer.listen(port, HOST, (err) => {
     if (err) {
       console.log(err);
       return;
@@ -60,7 +61,7 @@ export function dev() {
     if (isInteractive) {
       // clearConsole();
     }
-    console.log(chalk.cyan('\nStarting the development server...\n'));
+    console.log(chalk.cyan("\nStarting the development server...\n"));
     // if (openBrowserOpts) {
     //   openBrowser(urls.localUrlForBrowser);
     // }
