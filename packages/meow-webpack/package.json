@@ -1,6 +1,6 @@
 {
   "name": "meow-webpack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "> TODO: description",
   "author": "zhouyijun <zhou495248579@hotmail.com>",
   "homepage": "https://github.com/bigMeowCoding/meowjs/tree/main/packages/meow-webpack#readme",
@@ -24,9 +24,9 @@
   },
   "dependencies": {
     "chalk": "^2.1.0",
+    "html-webpack-plugin": "^5.5.0",
     "react-dev-utils": "^5.0.0",
     "webpack": "^5.73.0",
-    "html-webpack-plugin": "^5.5.0",
     "webpack-dev-server": "^4.9.3"
   }
 }
