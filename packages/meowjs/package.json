@@ -27,7 +27,7 @@
     "url": "https://github.com/bigMeowCoding/meowjs/issues"
   },
   "devDependencies": {
-    "meow-webpack": "^0.0.2"
+    "meow-webpack": "^0.1.0"
   },
   "gitHead": "1a5b3ed21593b765f30049e7739574a23b0e4862"
 }

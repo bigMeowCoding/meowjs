@@ -15,6 +15,8 @@ var _chalk = _interopRequireDefault(require("chalk"));
 
 var _path = require("path");
 
+var _htmlWebpackPlugin = _interopRequireDefault(require("html-webpack-plugin"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const isInteractive = process.stdout.isTTY;
@@ -32,6 +34,7 @@ function dev() {
 
   const compiler = (0, _WebpackDevServerUtils.createCompiler)(_webpack.default, {
     entry: (0, _path.join)(process.cwd(), "./src/index.js"),
+    plugins: [...[new _htmlWebpackPlugin.default()]],
     output: {
       path: (0, _path.join)(process.cwd(), "./build"),
       filename: "bundle.js"
@@ -73,7 +76,7 @@ function dev() {
     if (isInteractive) {// clearConsole();
     }
 
-    console.log(_chalk.default.cyan("\nStarting the development server...\n")); // if (openBrowserOpts) {
+    console.log(_chalk.default.cyan("Starting the development server...")); // if (openBrowserOpts) {
     //   openBrowser(urls.localUrlForBrowser);
     // }
     // send({ type: STARTING });

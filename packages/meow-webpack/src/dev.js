@@ -13,6 +13,7 @@ const PROTOCOL = process.env.HTTPS ? "https" : "http";
 const noop = () => {};
 const port = DEFAULT_PORT;
 import { join, dirname } from "path";
+import HTMLWebpackPlugin from 'html-webpack-plugin';
 
 process.env.NODE_ENV = "development";
 export function dev() {
@@ -22,6 +23,7 @@ export function dev() {
     webpack,
     {
       entry: join(process.cwd(), "./src/index.js"),
+      plugins: [...[new HTMLWebpackPlugin()]],
       output: { path: join(process.cwd(), "./build"), filename: "bundle.js" },
     },
     "Your App",
@@ -61,7 +63,7 @@ export function dev() {
     if (isInteractive) {
       // clearConsole();
     }
-    console.log(chalk.cyan("\nStarting the development server...\n"));
+    console.log(chalk.cyan("Starting the development server..."));
     // if (openBrowserOpts) {
     //   openBrowser(urls.localUrlForBrowser);
     // }
