@@ -13,55 +13,34 @@ const PROTOCOL = process.env.HTTPS ? "https" : "http";
 const noop = () => {};
 const port = DEFAULT_PORT;
 import { join, dirname } from "path";
-import HTMLWebpackPlugin from 'html-webpack-plugin';
+import HTMLWebpackPlugin from "html-webpack-plugin";
 
 process.env.NODE_ENV = "development";
 export function dev() {
   const urls = prepareUrls(PROTOCOL, HOST, port);
   // console.log("entry====", join(process.cwd(), "./src/index.js"));
-  const compiler = createCompiler(
-    webpack,
-    {
-      entry: join(process.cwd(), "./src/index.js"),
-      plugins: [...[new HTMLWebpackPlugin()]],
-      output: { path: join(process.cwd(), "./build"), filename: "bundle.js" },
-    },
-    "Your App",
-    urls
-  );
+  const compiler = webpack({
+    mode:'development',
+    entry: join(process.cwd(), "./src/index.js"),
+    plugins: [...[new HTMLWebpackPlugin()]],
+    output: { path: join(process.cwd(), "./build"), filename: "bundle.js" },
+  });
 
   const serverConfig = {
-    disableHostCheck: true,
-    compress: true,
-    clientLogLevel: "none",
-    hot: true,
-    quiet: true,
-    headers: {
-      "access-control-allow-origin": "*",
-    },
-    watchOptions: {
-      ignored: /node_modules/,
-    },
-    overlay: false,
+    // disableHostCheck: true,
+    // headers: {
+    //   "access-control-allow-origin": "*",
+    // },
+    open: true,
+    port: port,
     host: HOST,
-    https: !!process.env.HTTPS,
-    // contentBase: contentBase || process.env.CONTENT_BASE,
-    before(app) {
-      console.log("before");
-    },
-    after(app) {
-      console.log("after");
-    },
   };
 
   const devServer = new WebpackDevServer(compiler, serverConfig);
-  devServer.listen(port, HOST, (err) => {
+  devServer.startCallback((err) => {
     if (err) {
       console.log(err);
       return;
-    }
-    if (isInteractive) {
-      // clearConsole();
     }
     console.log(chalk.cyan("Starting the development server..."));
     // if (openBrowserOpts) {

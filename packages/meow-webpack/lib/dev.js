@@ -32,48 +32,29 @@ process.env.NODE_ENV = "development";
 function dev() {
   const urls = (0, _WebpackDevServerUtils.prepareUrls)(PROTOCOL, HOST, port); // console.log("entry====", join(process.cwd(), "./src/index.js"));
 
-  const compiler = (0, _WebpackDevServerUtils.createCompiler)(_webpack.default, {
+  const compiler = (0, _webpack.default)({
+    mode: 'development',
     entry: (0, _path.join)(process.cwd(), "./src/index.js"),
     plugins: [...[new _htmlWebpackPlugin.default()]],
     output: {
       path: (0, _path.join)(process.cwd(), "./build"),
       filename: "bundle.js"
     }
-  }, "Your App", urls);
+  });
   const serverConfig = {
-    disableHostCheck: true,
-    compress: true,
-    clientLogLevel: "none",
-    hot: true,
-    quiet: true,
-    headers: {
-      "access-control-allow-origin": "*"
-    },
-    watchOptions: {
-      ignored: /node_modules/
-    },
-    overlay: false,
-    host: HOST,
-    https: !!process.env.HTTPS,
-
-    // contentBase: contentBase || process.env.CONTENT_BASE,
-    before(app) {
-      console.log("before");
-    },
-
-    after(app) {
-      console.log("after");
-    }
-
+    // disableHostCheck: true,
+    // headers: {
+    //   "access-control-allow-origin": "*",
+    // },
+    open: true,
+    port: port,
+    host: HOST
   };
   const devServer = new _webpackDevServer.default(compiler, serverConfig);
-  devServer.listen(port, HOST, err => {
+  devServer.startCallback(err => {
     if (err) {
       console.log(err);
       return;
-    }
-
-    if (isInteractive) {// clearConsole();
     }
 
     console.log(_chalk.default.cyan("Starting the development server...")); // if (openBrowserOpts) {
